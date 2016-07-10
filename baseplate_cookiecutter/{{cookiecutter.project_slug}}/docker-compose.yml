@@ -1,0 +1,26 @@
+version: '2'
+services:
+    {{cookiecutter.project_slug}}:
+        build: .
+        volumes:
+            - .:/src
+        ports:
+            - "127.0.0.1:9090:9090"
+        {%- if cookiecutter.integrations.cassandra or cookiecutter.integrations.redis %}
+        links:
+            {%- if cookiecutter.integrations.cassandra %}
+            - cassandra
+            {%- endif %}
+            {%- if cookiecutter.integrations.redis %}
+            - redis
+            {%- endif %}
+        {%- endif %}
+        restart: always
+{%- if cookiecutter.integrations.cassandra: %}
+    cassandra:
+        image: cassandra
+{%- endif %}
+{%- if cookiecutter.integrations.redis: %}
+    redis:
+        image: redis
+{%- endif %}

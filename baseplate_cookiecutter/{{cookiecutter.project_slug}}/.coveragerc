@@ -1,0 +1,2 @@
+[run]
+omit = {{cookiecutter.module_name}}/*_thrift/*.py
