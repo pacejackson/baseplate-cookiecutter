@@ -1,0 +1,1 @@
+recursive-include baseplate_cookiecutter/{{cookiecutter.project_slug}} *
