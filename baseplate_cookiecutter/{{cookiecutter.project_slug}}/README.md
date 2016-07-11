@@ -47,6 +47,6 @@ command any time you change dependencies.
 
 ### Testing
 
-The test suite lives under `tests/`. Excercise it by running:
+The test suite lives under `tests/`. Exercise it by running:
 
     nosetests
