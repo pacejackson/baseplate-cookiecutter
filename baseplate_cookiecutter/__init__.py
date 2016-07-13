@@ -61,6 +61,7 @@ def main():
                 "python-coverage",
                 "python-gevent",
                 "python-nose",
+                "python-setuptools",
             ],
 
             "python": [
