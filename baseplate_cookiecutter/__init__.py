@@ -27,7 +27,7 @@ OK! Your project is now ready. Check out README.md for more information.
 
 
 def validate_slug(text):
-    if not re.match("^[a-z0-9_]+$", text):
+    if not re.match("^[a-z0-9][a-z0-9_]+$", text):
         raise ValueError
     return text
 
