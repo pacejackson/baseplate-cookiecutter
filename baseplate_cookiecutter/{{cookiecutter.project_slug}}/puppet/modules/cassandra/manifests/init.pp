@@ -29,7 +29,7 @@ class cassandra {
   }
 
   package { 'cassandra':
-    ensure  => installed,
+    ensure  => '2.2.7',
     require => Class['cassandra::java'],
   }
 
