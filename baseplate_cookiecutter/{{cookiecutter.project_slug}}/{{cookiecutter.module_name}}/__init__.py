@@ -70,7 +70,8 @@ def make_wsgi_app(app_config):
     baseplate.configure_metrics(metrics_client)
 {% if cookiecutter.integrations.cassandra %}
     cluster = cluster_from_config(app_config, prefix="cassandra.")
-    baseplate.add_to_context("cassandra", CassandraContextFactory(cluster))
+    session = cluster.connect("{{ cookiecutter.project_slug }}")
+    baseplate.add_to_context("cassandra", CassandraContextFactory(session))
 {% endif -%}
 {%- if cookiecutter.integrations.events %}
     baseplate.add_to_context("events_production", EventQueue("production"))
