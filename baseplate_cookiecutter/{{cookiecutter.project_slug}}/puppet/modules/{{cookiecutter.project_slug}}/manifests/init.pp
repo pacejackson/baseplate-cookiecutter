@@ -13,7 +13,14 @@ class {{ cookiecutter.project_slug }} {
 
   package { $dependencies:
     ensure => installed,
-    before => Exec['install app'],
+    before => Exec['build app'],
+  }
+
+  exec { 'build app':
+    user    => $::user,
+    cwd     => $::project_path,
+    command => 'python setup.py build',
+    before  => Exec['install app'],
   }
 
   exec { 'install app':
