@@ -92,13 +92,13 @@ def main():
     print("case and underscores as it will be used in identifiers.")
     project_slug = click.prompt("Slug", type=validate_slug)
     variables["project_slug"] = project_slug
+    variables["module_name"] = project_slug
     print()
 
     print("OK. Given that, what should your service's name look like as")
     print("a Python class? (you can hit enter to accept the guess in brackets)")
     variables["service_name"] = click.prompt(
         "Service class name", default=project_slug.title() + "Service")
-    variables["module_name"] = "reddit_service_" + project_slug
     print()
 
     print("Alright, what application framework would you like to use?")
