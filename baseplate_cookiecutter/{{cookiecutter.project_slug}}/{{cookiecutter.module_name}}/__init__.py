@@ -46,6 +46,9 @@ class {{ cookiecutter.service_name }}(object):
         event = Event("example_topic", "event_type")
         {{ cookiecutter.context_object }}.events_production.put(event)
 {% endif -%}
+{%- if cookiecutter.integrations.memcache %}
+        {{ cookiecutter.context_object }}.memcache.stats()
+{% endif -%}
 {%- if cookiecutter.integrations.redis %}
         {{ cookiecutter.context_object }}.redis.ping()
 {% endif -%}
@@ -77,9 +80,13 @@ def make_wsgi_app(app_config):
     baseplate.add_to_context("events_production", EventQueue("production"))
     baseplate.add_to_context("events_test", EventQueue("test"))
 {% endif -%}
+{%- if cookiecutter.integrations.memcache %}
+    memcache_pool = memcache.pool_from_config(app_config, prefix="memcache.")
+    baseplate.add_to_context("memcache", memcache.MemcacheContextFactory(memcache_pool))
+{% endif -%}
 {%- if cookiecutter.integrations.redis %}
-    redis_pool = pool_from_config(app_config, prefix="redis.")
-    baseplate.add_to_context("redis", RedisContextFactory(redis_pool))
+    redis_pool = redis.pool_from_config(app_config, prefix="redis.")
+    baseplate.add_to_context("redis", redis.RedisContextFactory(redis_pool))
 {% endif -%}
 {%- if cookiecutter.integrations.sqlalchemy %}
     engine = engine_from_config(app_config, prefix="database.")

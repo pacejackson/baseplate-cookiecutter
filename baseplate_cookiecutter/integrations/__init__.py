@@ -14,12 +14,14 @@ class Integration(object):
 def load_all():
     from .cassandra import CassandraIntegration
     from .events import EventsIntegration
+    from .memcache import MemcacheIntegration
     from .redis import RedisIntegration
     from .sqlalchemy import SQLAlchemyIntegration
 
     return [
         CassandraIntegration(),
         EventsIntegration(),
+        MemcacheIntegration(),
         RedisIntegration(),
         SQLAlchemyIntegration(),
     ]

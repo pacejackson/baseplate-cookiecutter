@@ -6,10 +6,13 @@ services:
             - .:/src
         ports:
             - "127.0.0.1:9090:9090"
-        {%- if cookiecutter.integrations.cassandra or cookiecutter.integrations.redis %}
+        {%- if cookiecutter.integrations.cassandra or cookiecutter.integrations.memcache or cookiecutter.integrations.redis %}
         links:
             {%- if cookiecutter.integrations.cassandra %}
             - cassandra
+            {%- endif %}
+            {%- if cookiecutter.integrations.memcache %}
+            - memcached
             {%- endif %}
             {%- if cookiecutter.integrations.redis %}
             - redis
@@ -19,6 +22,10 @@ services:
 {%- if cookiecutter.integrations.cassandra: %}
     cassandra:
         image: cassandra
+{%- endif %}
+{%- if cookiecutter.integrations.memcache: %}
+    memcached:
+        image: memcached
 {%- endif %}
 {%- if cookiecutter.integrations.redis: %}
     redis:

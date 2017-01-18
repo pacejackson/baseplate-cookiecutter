@@ -8,31 +8,31 @@ from cookiecutter.utils import rmtree
 from . import Integration
 
 
-class RedisIntegration(Integration):
-    slug = "redis"
-    name = "Redis"
+class MemcacheIntegration(Integration):
+    slug = "memcache"
+    name = "Memcache"
 
     variables = {
         "dependencies": {
             "apt": [
-                "python-redis",
+                "python-pymemcache",
             ],
 
             "python": [
-                "redis",
+                "pymemcache",
             ],
         },
 
         "imports": {
             "external": [
-                "from baseplate.context import redis",
+                "from baseplate.context import memcache",
             ],
         },
 
         "puppet_modules": [
-            "redis",
+            "memcache",
         ],
     }
 
     def prune(self, variables):
-        rmtree("puppet/modules/redis")
+        rmtree("puppet/modules/memcache")
