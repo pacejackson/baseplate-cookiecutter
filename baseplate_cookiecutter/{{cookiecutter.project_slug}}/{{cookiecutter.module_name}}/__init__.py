@@ -71,6 +71,11 @@ def make_wsgi_app(app_config):
     baseplate = Baseplate()
     baseplate.configure_logging()
     baseplate.configure_metrics(metrics_client)
+    baseplate.configure_tracing(
+        cfg.tracing.service_name,
+        cfg.tracing.endpoint,
+        sample_rate=cfg.tracing.sample_rate,
+    )
 {% if cookiecutter.integrations.cassandra %}
     cluster = cluster_from_config(app_config, prefix="cassandra.")
     session = cluster.connect("{{ cookiecutter.project_slug }}")
