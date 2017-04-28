@@ -15,17 +15,19 @@ class CassandraIntegration(Integration):
     variables = {
         "dependencies": {
             "apt": [
-                "python-cassandra"
+                "python-cassandra",
+                "python-cqlmapper",
             ],
 
             "python": [
                 "cassandra-driver",
+                "cqlmapper",
             ],
         },
 
         "imports": {
             "external": [
-                "from baseplate.context.cassandra import cluster_from_config, CassandraContextFactory",
+                "from baseplate.context.cassandra import cluster_from_config, CQLMapperContextFactory",
             ],
         },
 
