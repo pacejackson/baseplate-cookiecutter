@@ -64,6 +64,11 @@ def make_wsgi_app(app_config):
     cfg = config.parse_config(app_config, {
         # TODO: add your config spec here
         # https://reddit.github.io/baseplate/baseplate/config.html
+        "tracing": {
+            "service_name": config.String,
+            "sample_rate": config.Float,
+            "endpoint": config.Optional(config.Endpoint),
+        },
     })
 
     metrics_client = make_metrics_client(app_config)
