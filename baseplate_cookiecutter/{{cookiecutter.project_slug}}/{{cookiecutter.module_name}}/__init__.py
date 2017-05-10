@@ -64,23 +64,15 @@ def make_wsgi_app(app_config):
     cfg = config.parse_config(app_config, {
         # TODO: add your config spec here
         # https://reddit.github.io/baseplate/baseplate/config.html
-        "tracing": {
-            "service_name": config.String,
-            "sample_rate": config.Float,
-            "endpoint": config.Optional(config.Endpoint),
-        },
     })
 
     metrics_client = make_metrics_client(app_config)
+    tracing_client = make_tracing_client(app_config)
 
     baseplate = Baseplate()
     baseplate.configure_logging()
     baseplate.configure_metrics(metrics_client)
-    baseplate.configure_tracing(
-        cfg.tracing.service_name,
-        cfg.tracing.endpoint,
-        sample_rate=cfg.tracing.sample_rate,
-    )
+    baseplate.configure_tracing(tracing_client)
 {% if cookiecutter.integrations.cassandra %}
     cluster = cluster_from_config(app_config, prefix="cassandra.")
     session = cluster.connect("{{ cookiecutter.project_slug }}")
