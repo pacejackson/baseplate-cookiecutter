@@ -61,6 +61,7 @@ def main():
                 "python-coverage",
                 "python-gevent",
                 "python-nose",
+                "python-raven",
                 "python-setuptools",
             ],
 
@@ -78,6 +79,7 @@ def main():
                 """from baseplate import (
     Baseplate,
     config,
+    error_reporter_from_config,
     metrics_client_from_config,
     tracing_client_from_config,
 )""",
