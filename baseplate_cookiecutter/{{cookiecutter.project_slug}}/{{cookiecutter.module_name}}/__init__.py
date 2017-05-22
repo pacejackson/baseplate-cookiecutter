@@ -66,8 +66,8 @@ def make_wsgi_app(app_config):
         # https://reddit.github.io/baseplate/baseplate/config.html
     })
 
-    metrics_client = make_metrics_client(app_config)
-    tracing_client = make_tracing_client(app_config)
+    metrics_client = metrics_client_from_config(app_config)
+    tracing_client = tracing_client_from_config(app_config)
 
     baseplate = Baseplate()
     baseplate.configure_logging()

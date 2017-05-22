@@ -75,7 +75,12 @@ def main():
             ],
 
             "external": [
-                "from baseplate import make_metrics_client, make_tracing_client, config, Baseplate",
+                """from baseplate import (
+    Baseplate,
+    config,
+    metrics_client_from_config,
+    tracing_client_from_config,
+)""",
             ],
 
             "local": [
