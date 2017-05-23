@@ -53,7 +53,7 @@ The test suite lives under `tests/`. Exercise it by running:
 
 {% if cookiecutter.framework == "thrift": -%}
 The thrift compiler also generates a CLI client for your service. To use it,
-start your server as describe above then run the `test-client` script in this
+start your server as described above then run the `test-client` script in this
 directory.
 
     $ ./test-client is_healthy
