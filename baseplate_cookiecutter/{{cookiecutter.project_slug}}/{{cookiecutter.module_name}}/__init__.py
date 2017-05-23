@@ -17,9 +17,13 @@ logger = logging.getLogger(__name__)
 {% if cookiecutter.framework == "thrift": -%}
 class Handler({{ cookiecutter.service_name }}.ContextIface):
     def is_healthy(self, context):
-        # TODO: check your service has everything it needs to function
+        # TODO: check your service has the minimal stuff it needs to function
         # then return True if OK, or False if not
         # (raising an exception works for "unhealthy" too)
+        #
+        # note: don't make this too complicated or depend on other services
+        # outside your control in your healthcheck. this can lead to cascading
+        # failures where services fail out in a big cycle or other oddities.
         raise NotImplementedError
 
     # TODO: implement your service methods here!
@@ -28,6 +32,10 @@ class {{ cookiecutter.service_name }}(object):
     def is_healthy(self, request):
         # TODO: check your service has everything it needs to function
         # then return a dictionary with any health info you want.
+        #
+        # note: don't make this too complicated or depend on other services
+        # outside your control in your healthcheck. this can lead to cascading
+        # failures where services fail out in a big cycle or other oddities.
         raise NotImplementedError
 
     # TODO: implement your service's endpoints here
