@@ -23,6 +23,7 @@ class ThriftFramework(Framework):
     }
 
     def prune(self, variables):
-        filename = os.path.join(variables["module_name"],
-                                variables["project_slug"] + ".thrift")
-        os.remove(filename)
+        thriftfile = os.path.join(variables["module_name"],
+                                  variables["project_slug"] + ".thrift")
+        os.remove(thriftfile)
+        os.remove("test-client")

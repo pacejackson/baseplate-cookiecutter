@@ -1,0 +1,6 @@
+#!/bin/sh
+
+# this is a wrapper around the simple command line client the thrift compiler
+# generates for this service. it assumes the server is running locally on port
+# 9090. run it to see more usage details.
+exec python -m {{ cookiecutter.module_name }}.{{ cookiecutter.project_slug }}_thrift.remote -h localhost:9090 $@

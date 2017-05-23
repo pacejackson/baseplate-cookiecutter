@@ -50,3 +50,16 @@ command any time you change dependencies.
 The test suite lives under `tests/`. Exercise it by running:
 
     nosetests
+
+{% if cookiecutter.framework == "thrift": -%}
+The thrift compiler also generates a CLI client for your service. To use it,
+start your server as describe above then run the `test-client` script in this
+directory.
+
+    $ ./test-client is_healthy
+    True
+
+    $ ./test-client my_fancy_endpoint '["args", "parse", "as", "python"]' '32'
+    False
+
+{% endif %}
