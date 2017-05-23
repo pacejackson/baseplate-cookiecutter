@@ -8,6 +8,12 @@ exec { 'update apt cache':
 # make updating the apt cache an implicit requirement for all packages
 Exec['update apt cache'] -> Package<| |>
 
+# this makes your daemon accessible on {{ cookiecutter.project_slug }}.local
+# automatically via mDNS.
+package { 'avahi-daemon':
+  ensure => installed,
+}
+
 include {{ cookiecutter.project_slug }}
 
 {%- for puppet_module in cookiecutter.puppet_modules: %}
