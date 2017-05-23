@@ -83,6 +83,7 @@ def main():
     metrics_client_from_config,
     tracing_client_from_config,
 )""",
+                "from baseplate.secrets import secrets_store_from_config",
             ],
 
             "local": [

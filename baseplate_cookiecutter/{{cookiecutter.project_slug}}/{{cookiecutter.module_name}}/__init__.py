@@ -55,6 +55,8 @@ class {{ cookiecutter.service_name }}(object):
 {%- if cookiecutter.integrations.sqlalchemy %}
         {{ cookiecutter.context_object }}.database.query(models.MyModel).all()
 {% endif %}
+        {{ cookiecutter.context_object }}.secrets.get_simple("secret/{{ cookiecutter.project_slug }}/example")
+
 
 {% if cookiecutter.framework == "thrift": -%}
 def make_processor(app_config):
@@ -69,12 +71,14 @@ def make_wsgi_app(app_config):
     metrics_client = metrics_client_from_config(app_config)
     tracing_client = tracing_client_from_config(app_config)
     error_reporter = error_reporter_from_config(app_config, __name__)
+    secrets = secrets_store_from_config(app_config)
 
     baseplate = Baseplate()
     baseplate.configure_logging()
     baseplate.configure_metrics(metrics_client)
     baseplate.configure_tracing(tracing_client)
     baseplate.configure_error_reporting(error_reporter)
+    baseplate.add_to_context("secrets", secrets)
 {% if cookiecutter.integrations.cassandra %}
     cluster = cluster_from_config(app_config, prefix="cassandra.")
     session = cluster.connect("{{ cookiecutter.project_slug }}")
