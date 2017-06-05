@@ -5,14 +5,21 @@ This is the {{ cookiecutter.project_slug }} service. It is built on [Baseplate].
 [Baseplate]: https://reddit.github.io/baseplate/
 
 {% if cookiecutter.integrations.sqlalchemy %}
-## Database Initialization
+## Sqlalchemy Database Initialization
 
 To create schema in the database:
 
-    baseplate-script example.ini {{ cookiecutter.module_name }}.models:create_schema
+    baseplate-script example.ini {{ cookiecutter.module_name }}.models.sql:create_schema
 
 {%- endif %}
+{% if cookiecutter.integrations.cassandra %}
+## Cassandra Database Initialization
 
+To create schema in the database:
+
+    baseplate-script example.ini {{ cookiecutter.module_name }}.models.cql:create_schema
+
+{%- endif %}
 ## Development
 
 ### Vagrant

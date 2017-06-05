@@ -35,5 +35,5 @@ class SQLAlchemyIntegration(Integration):
     }
 
     def prune(self, variables):
-        filename = os.path.join(variables["module_name"], "models.py")
+        filename = os.path.join(variables["module_name"], "models", "sql.py")
         os.remove(filename)

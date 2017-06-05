@@ -3,6 +3,8 @@ from __future__ import division
 from __future__ import print_function
 from __future__ import unicode_literals
 
+import os
+
 from cookiecutter.utils import rmtree
 
 from . import Integration
@@ -37,4 +39,6 @@ class CassandraIntegration(Integration):
     }
 
     def prune(self, variables):
+        filename = os.path.join(variables["module_name"], "models", "cql.py")
+        os.remove(filename)
         rmtree("puppet/modules/cassandra")
