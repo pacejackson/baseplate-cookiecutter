@@ -8,10 +8,10 @@ from cqlmapper.models import Model
 
 
 class MyModel(Model):
-
     id = columns.UUID(primary_key=True, default=uuid.uuid4)
     name = columns.Text()
     value = columns.Integer()
+
 
 def create_schema(app_config):
     """Create schema in the database.

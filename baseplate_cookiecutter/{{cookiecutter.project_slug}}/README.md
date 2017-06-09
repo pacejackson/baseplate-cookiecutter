@@ -5,7 +5,7 @@ This is the {{ cookiecutter.project_slug }} service. It is built on [Baseplate].
 [Baseplate]: https://reddit.github.io/baseplate/
 
 {% if cookiecutter.integrations.sqlalchemy %}
-## Sqlalchemy Database Initialization
+## Relational Database Initialization
 
 To create schema in the database:
 

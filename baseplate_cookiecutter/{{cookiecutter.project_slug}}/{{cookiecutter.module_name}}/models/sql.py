@@ -1,4 +1,3 @@
-
 from sqlalchemy import Column, Integer, String, engine_from_config
 from sqlalchemy.ext.declarative import declarative_base
 
